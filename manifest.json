@@ -9,6 +9,10 @@
         "default_popup":"popup.html"
 
     },
+    "background":
+    {
+        "scripts": ["jquery-3.4.1.min.js"]
+    },
 
     "permissions":["activeTab","tabs","cookies","<all_urls>"]
 }

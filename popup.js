@@ -32,7 +32,7 @@ cerez= "bos";
 chrome.cookies.set({
   "name": "cookie1",
   "url": "http://www.local.erenler.com/",
-  "value": "degisiyor aga"
+  "value": makeid(5)
 }, function (cookie) {
   console.log(JSON.stringify(cookie));
 });
@@ -47,7 +47,7 @@ chrome.cookies.set({
 
 
     document.getElementById("makara").innerHTML = document.cookie;
-
+  //console.log(makeid(5));
     //console.log("gercek url:"+document.cookie);
     //Create a New Session if not created
     //Ajax Request to server with session id
@@ -56,4 +56,34 @@ chrome.cookies.set({
     //When The page loads it will change its slug os it will be one use url each time
 });
 
-chrome.runtime.sendMessage("Selamba");
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+
+
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+  var url = tabs[0].url;
+var parametros = {
+          "url" : url
+  };
+
+$.ajax({
+  type: "POST",
+  data: parametros,
+  url: 'http://www.local.erenler.com/test.php',
+  success: function(data) {
+      console.log(data);
+  },
+  error: function(e) {
+      alert("error");
+  }
+});
+
+});
