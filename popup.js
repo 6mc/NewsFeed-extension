@@ -1,3 +1,4 @@
+
 chrome.tabs.getSelected(null, function(tab) { //<-- "tab" has all the information
     console.log(tab.url);       //returns the url
     console.log(tab.title);     //returns the title
@@ -21,13 +22,13 @@ chrome.tabs.getSelected(null, function(tab) { //<-- "tab" has all the informatio
 cerez= "bos";
 
     chrome.cookies.get({url: "http://www.local.erenler.com/", name: "cookie1"},
-        function(cookie) {
+        function(dcookie) {
 //     cerez = cookie.value;
     // console.log(cerez)
   
 
 
-    if  (cookie==null)
+    if  (dcookie==null)
     {
 chrome.cookies.set({
   "name": "cookie1",
@@ -35,8 +36,50 @@ chrome.cookies.set({
   "value": makeid(5)
 }, function (cookie) {
   console.log(JSON.stringify(cookie));
+    var url = tab.url;
+      var title = tab.title;
+    var parametros = {
+              "url" : url,
+              "title": title,
+              "user": dcookie.value}
+
+
 });
     }
+
+    else
+    {
+      console.log("varolan cookie "+dcookie.value);
+    
+
+
+  
+      var url = tab.url;
+      var title = tab.title;
+    var parametros = {
+              "url" : url,
+              "title": title,
+              "user": dcookie.value
+
+
+    }
+
+            };
+    
+    $.ajax({
+      type: "POST",
+      data: parametros,
+      url: 'http://www.local.erenler.com/test.php',
+      success: function(data) {
+          console.log(data);
+      },
+      error: function(e) {
+          alert("error");
+      }
+    });
+    
+  
+
 
 
 
@@ -68,22 +111,4 @@ function makeid(length) {
 
 
 
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-  var url = tabs[0].url;
-var parametros = {
-          "url" : url
-  };
 
-$.ajax({
-  type: "POST",
-  data: parametros,
-  url: 'http://www.local.erenler.com/test.php',
-  success: function(data) {
-      console.log(data);
-  },
-  error: function(e) {
-      alert("error");
-  }
-});
-
-});
