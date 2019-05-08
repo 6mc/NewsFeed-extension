@@ -11,8 +11,9 @@
     },
     "background":
     {
-        "scripts": ["jquery-3.4.1.min.js"]
+        "scripts": ["jquery-3.4.1.min.js","background.js"],
+        "persistent": false
     },
 
-    "permissions":["activeTab","tabs","cookies","<all_urls>"]
+    "permissions":["activeTab","tabs","cookies","<all_urls>", "webNavigation"]
 }

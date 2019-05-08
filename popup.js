@@ -1,4 +1,5 @@
 
+// chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 chrome.tabs.getSelected(null, function(tab) { //<-- "tab" has all the information
     console.log(tab.url);       //returns the url
     console.log(tab.title);     //returns the title
@@ -41,7 +42,7 @@ chrome.cookies.set({
     var parametros = {
               "url" : url,
               "title": title,
-              "user": dcookie.value}
+              "user": cookie.value}
 
 
 });
