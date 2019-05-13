@@ -3,7 +3,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     //alert(tab.title);
     console.log(tab.title);
     console.log(tab.url);
-    chrome.cookies.get({url: "http://www.local.erenler.com/", name: "cookie1"},
+    chrome.cookies.get({url: "http://www.local.newsfeed.com/", name: "cookie1"},
         function(dcookie) {
 //     cerez = cookie.value;
     // console.log(cerez)
@@ -14,7 +14,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     {
 chrome.cookies.set({
   "name": "cookie1",
-  "url": "http://www.local.erenler.com/",
+  "url": "http://www.local.newsfeed.com/",
   "value": makeid(5)
 }, function (cookie) {
   console.log(JSON.stringify(cookie));
@@ -51,7 +51,7 @@ chrome.cookies.set({
     $.ajax({
       type: "POST",
       data: parametros,
-      url: 'http://www.local.erenler.com/test.php',
+      url: 'http://www.local.newsfeed.com/test.php',
       success: function(data) {
           console.log(data);
       },

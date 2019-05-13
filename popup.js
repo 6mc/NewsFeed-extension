@@ -22,7 +22,7 @@ chrome.tabs.getSelected(null, function(tab) { //<-- "tab" has all the informatio
 
 cerez= "bos";
 
-    chrome.cookies.get({url: "http://www.local.erenler.com/", name: "cookie1"},
+    chrome.cookies.get({url: "http://www.local.newsfeed.com/", name: "cookie1"},
         function(dcookie) {
 //     cerez = cookie.value;
     // console.log(cerez)
@@ -33,7 +33,7 @@ cerez= "bos";
     {
 chrome.cookies.set({
   "name": "cookie1",
-  "url": "http://www.local.erenler.com/",
+  "url": "http://www.local.newsfeed.com/",
   "value": makeid(5)
 }, function (cookie) {
   console.log(JSON.stringify(cookie));
@@ -70,7 +70,7 @@ chrome.cookies.set({
     $.ajax({
       type: "POST",
       data: parametros,
-      url: 'http://www.local.erenler.com/test.php',
+      url: 'http://www.local.newsfeed.com/test.php',
       success: function(data) {
           console.log(data);
       },
