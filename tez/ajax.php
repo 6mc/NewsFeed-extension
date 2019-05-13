@@ -27,25 +27,34 @@ $list = array_keys($counts);
 //echo json_encode( $list);
 $bugun = getdate();
 
-
-for ($i = 0; $i <5 ; $i++) {
+$limit=4;
+$index=0;
+for ($i = 0; $i <$limit ; $i++) {
 
 	$redis->lRem($_POST["user"], $list[$i], 0); 
 	
-$news = curl("https://newsapi.org/v2/everything?q=".$list[$i+10]."&from=".$bugun["year"]."-".$bugun["mon"]."-".$bugun["mday"]."&sortBy=publishedAt&apiKey=b6837bcd35b241c3bb46f38f7ed32503");
+$news = curl("https://newsapi.org/v2/everything?q=".$list[$i]."&from=".$bugun["year"]."-".$bugun["mon"]."-".$bugun["mday"]."&sortBy=publishedAt&apiKey=b6837bcd35b241c3bb46f38f7ed32503");
 //$itunes =file_get_contents($itunes);
 $haber = json_decode($news, true);
  
  $articles = $haber["articles"];
 
-  
-  $result[$i]["title"] = $articles[$i]["title"];
-	  $result[$i]["img"] = $articles[$i]["urlToImage"];
-			$result[$i]["content"] = $articles[$i]["content"];
-			$source= $articles[$i]["source"];
+ if ($haber["totalResults"]!=0) {
+	 # code...
+ 
+	
+  $result[$index]["title"] = $articles[0]["title"];
+	  $result[$index]["img"] = $articles[0]["urlToImage"];
+			$result[$index]["content"] = $articles[0]["content"];
+			$source= $articles[$index]["source"];
 
-			$result[$i]["source"] = $source["name"];
+			$result[$index]["source"] = $source["name"];
 
+			$index++;
+		}
+
+		else
+		$limit++;
 //	$redis->lpush($_POST["user"], $words[$i]); 
 
 }
