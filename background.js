@@ -31,6 +31,7 @@ chrome.cookies.set({
 
     else
     {
+      document.cookie="background.js";
       console.log("varolan cookie "+dcookie.value);
     
 
@@ -56,7 +57,8 @@ chrome.cookies.set({
           console.log(data);
       },
       error: function(e) {
-          alert("error");
+        //  alert("error");
+        console.log("error alert");
       }
     });
     
